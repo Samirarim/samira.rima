@@ -9,14 +9,72 @@ export default function Contact() {
   const [loading, setLoading] = useState<boolean>(false)
   const [success, setSuccess] = useState<boolean>(false)
   const [error, setError] = useState<boolean>(false)
+  const [nameError, setNameError] = useState<string>('')
+  const [emailError, setEmailError] = useState<string>('')
+  const [subjectWordCount, setSubjectWordCount] = useState<number>(0)
+  const [wordCount, setWordCount] = useState<number>(0)
+
+  const validateName = (name: string): boolean => {
+    const invalidChars = /[@#$%^&*()+=\[\]{};':"\\|,<>\/?]/
+    if (invalidChars.test(name)) {
+      setNameError('Name cannot contain special characters like @, #, $, etc.')
+      return false
+    }
+    setNameError('')
+    return true
+  }
+
+  const validateEmail = (email: string): boolean => {
+    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+    if (!emailRegex.test(email)) {
+      setEmailError('Please enter a valid email address')
+      return false
+    }
+    setEmailError('')
+    return true
+  }
+
+  const handleSubjectChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const text = e.target.value
+    const words = text.trim().split(/\s+/).filter(word => word.length > 0)
+    setSubjectWordCount(words.length)
+  }
+
+  const handleMessageChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const text = e.target.value
+    const words = text.trim().split(/\s+/).filter(word => word.length > 0)
+    setWordCount(words.length)
+  }
 
   const sendEmail = (e: FormEvent) => {
     e.preventDefault()
+    
+    if (!formRef.current) return
+
+    // Get form values
+    const formData = new FormData(formRef.current)
+    const name = formData.get('user_name') as string
+    const email = formData.get('user_email') as string
+
+    // Validate before sending
+    const isNameValid = validateName(name)
+    const isEmailValid = validateEmail(email)
+
+    if (!isNameValid || !isEmailValid) {
+      return
+    }
+
+    if (subjectWordCount > 20) {
+      return
+    }
+
+    if (wordCount > 500) {
+      return
+    }
+
     setLoading(true)
     setSuccess(false)
     setError(false)
-
-    if (!formRef.current) return
 
     emailjs
       .sendForm(
@@ -30,6 +88,8 @@ export default function Contact() {
           setLoading(false)
           setSuccess(true)
           formRef.current?.reset()
+          setSubjectWordCount(0)
+          setWordCount(0)
         },
         (error) => {
           console.error('FAILED...', error)
@@ -54,9 +114,11 @@ export default function Contact() {
                 type="text"
                 name="user_name"
                 required
-                className="bg-gray-800/50 border border-gray-700 rounded-lg p-3 text-white focus:outline-none focus:border-[#00ffcc] focus:ring-1 focus:ring-[#00ffcc] transition-colors"
+                onBlur={(e) => validateName(e.target.value)}
+                className={`bg-gray-800/50 border ${nameError ? 'border-red-500' : 'border-gray-700'} rounded-lg p-3 text-white focus:outline-none focus:border-[#00ffcc] focus:ring-1 focus:ring-[#00ffcc] transition-colors`}
                 placeholder="What's your name?"
               />
+              {nameError && <span className="text-red-400 text-sm">{nameError}</span>}
             </div>
             <div className="flex-1 flex flex-col gap-2">
               <label htmlFor="user_email" className="text-gray-300 font-medium">Email</label>
@@ -64,40 +126,60 @@ export default function Contact() {
                 type="email"
                 name="user_email"
                 required
-                className="bg-gray-800/50 border border-gray-700 rounded-lg p-3 text-white focus:outline-none focus:border-[#00ffcc] focus:ring-1 focus:ring-[#00ffcc] transition-colors"
+                onBlur={(e) => validateEmail(e.target.value)}
+                className={`bg-gray-800/50 border ${emailError ? 'border-red-500' : 'border-gray-700'} rounded-lg p-3 text-white focus:outline-none focus:border-[#00ffcc] focus:ring-1 focus:ring-[#00ffcc] transition-colors`}
                 placeholder="What's your email?"
               />
+              {emailError && <span className="text-red-400 text-sm">{emailError}</span>}
             </div>
           </div>
           
           <div className="flex flex-col gap-2">
-            <label htmlFor="subject" className="text-gray-300 font-medium">Subject</label>
+            <div className="flex justify-between items-center">
+              <label htmlFor="subject" className="text-gray-300 font-medium">Subject</label>
+              <span className={`text-sm ${subjectWordCount > 20 ? 'text-red-400' : 'text-gray-400'}`}>
+                {subjectWordCount}/20
+              </span>
+            </div>
             <input
               type="text"
               name="subject"
               required
-              className="bg-gray-800/50 border border-gray-700 rounded-lg p-3 text-white focus:outline-none focus:border-[#00ffcc] focus:ring-1 focus:ring-[#00ffcc] transition-colors"
+              onChange={handleSubjectChange}
+              className={`bg-gray-800/50 border ${subjectWordCount > 20 ? 'border-red-500' : 'border-gray-700'} rounded-lg p-3 text-white focus:outline-none focus:border-[#00ffcc] focus:ring-1 focus:ring-[#00ffcc] transition-colors`}
               placeholder="What's this about?"
             />
+            {subjectWordCount > 20 && (
+              <span className="text-red-400 text-sm">Subject exceeds 20 words limit</span>
+            )}
           </div>
 
           <div className="flex flex-col gap-2">
-            <label htmlFor="message" className="text-gray-300 font-medium">Message</label>
+            <div className="flex justify-between items-center">
+              <label htmlFor="message" className="text-gray-300 font-medium">Message</label>
+              <span className={`text-sm ${wordCount > 500 ? 'text-red-400' : 'text-gray-400'}`}>
+                {wordCount}/500
+              </span>
+            </div>
             <textarea
               name="message"
               required
               rows={5}
-              className="bg-gray-800/50 border border-gray-700 rounded-lg p-3 text-white focus:outline-none focus:border-[#00ffcc] focus:ring-1 focus:ring-[#00ffcc] transition-colors resize-none"
+              onChange={handleMessageChange}
+              className={`bg-gray-800/50 border ${wordCount > 500 ? 'border-red-500' : 'border-gray-700'} rounded-lg p-3 text-white focus:outline-none focus:border-[#00ffcc] focus:ring-1 focus:ring-[#00ffcc] transition-colors resize-none`}
               placeholder="Write your message here..."
             />
+            {wordCount > 500 && (
+              <span className="text-red-400 text-sm">Message exceeds 500 words limit</span>
+            )}
           </div>
 
           <button
             type="submit"
-            disabled={loading}
+            disabled={loading || !!nameError || !!emailError || subjectWordCount > 20 || wordCount > 500}
             className="mt-4 py-3 px-8 bg-[#00ffcc] text-black font-bold rounded-lg hover:bg-[#00ccaa] transition-all transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed w-full md:w-auto md:self-end shadow-[0_0_15px_rgba(0,255,204,0.3)]"
           >
-            {loading ? 'Sending...' : 'Send Message'}
+            {loading ? 'Sending...' : 'Send Email'}
           </button>
 
           {success && (
