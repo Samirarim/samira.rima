@@ -25,7 +25,7 @@ export default function Hero({ mouse, cvData }: HeroProps) {
 
       <div className="relative z-10 text-center px-4 fade-in">
         <div className="mb-6" style={{ animationDelay: '0.2s' }}>
-          <span className="text-[#00ffcc] text-sm tracking-widest uppercase font-semibold">
+          <span className="text-primary text-sm tracking-widest uppercase font-semibold">
             &lt;Developer /&gt;
           </span>
         </div>
@@ -48,7 +48,7 @@ export default function Hero({ mouse, cvData }: HeroProps) {
           <Link
            href={ '#contact'}
             // href={`mailto:${cvData.contact.email}`}
-            className="px-8 py-3 bg-gradient-to-r from-[#00ffcc] to-[#6366f1] text-black font-semibold rounded-lg hover:shadow-lg hover:shadow-indigo-500/50 transition-all duration-300"
+            className="px-8 py-3 bg-gradient-to-r from-primary to-secondary text-black font-semibold rounded-lg hover:shadow-lg hover:shadow-indigo-500/50 transition-all duration-300"
           >
             Get In Touch
           </Link>
@@ -56,7 +56,7 @@ export default function Hero({ mouse, cvData }: HeroProps) {
             href={`https://${cvData.contact.github}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="px-8 py-3 border-2 border-[#00ffcc] text-[#00ffcc] font-semibold rounded-lg hover:bg-[#00ffcc] hover:text-black transition-all duration-300"
+            className="px-8 py-3 border-2 border-primary text-primary font-semibold rounded-lg hover:bg-primary hover:text-black transition-all duration-300"
           >
             View GitHub
           </Link>
@@ -65,7 +65,7 @@ export default function Hero({ mouse, cvData }: HeroProps) {
 
       <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-10">
         <div className="animate-bounce">
-          <svg className="w-6 h-6 text-[#00ffcc]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
           </svg>
         </div>

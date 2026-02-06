@@ -19,7 +19,7 @@ export default function Publications({ publications }: PublicationsProps) {
             className="card-hover bg-gradient-to-br from-purple-900/20 to-indigo-900/20 border border-purple-500/30 rounded-xl p-8"
             style={{ animationDelay: `${i * 0.1}s` }}
           >
-            <h3 className="text-xl font-bold text-[#00ffcc] mb-3">{pub.title}</h3>
+            <h3 className="text-xl font-bold text-primary mb-3">{pub.title}</h3>
             <p className="text-gray-400">
               {pub.journal || pub.conference} • {pub.year}
             </p>

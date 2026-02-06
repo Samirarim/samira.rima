@@ -49,7 +49,7 @@ export default function ParticleField({ mouse }: ParticleFieldProps) {
       </bufferGeometry>
       <pointsMaterial
         size={0.1}
-        color="#00ffcc"
+        color="#00ffcc" // Three.js requires hex color value
         sizeAttenuation
         transparent
         opacity={0.6}

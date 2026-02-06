@@ -17,7 +17,7 @@ export default function Education({ education }: EducationProps) {
           key={i}
           className="card-hover bg-gradient-to-br from-indigo-900/20 to-cyan-900/20 border border-indigo-500/30 rounded-xl p-8"
         >
-          <h3 className="text-2xl font-bold text-[#00ffcc] mb-2">{edu.degree}</h3>
+          <h3 className="text-2xl font-bold text-primary mb-2">{edu.degree}</h3>
           <p className="text-xl text-gray-300 mb-2">{edu.institution}</p>
           <div className="flex gap-6 text-gray-400">
            {edu.cgpa && <><span>CGPA: {edu.cgpa}</span>

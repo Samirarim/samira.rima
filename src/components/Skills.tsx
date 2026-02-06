@@ -14,7 +14,7 @@ export default function Skills({ skills }: SkillsProps) {
       </h2>
       <div className="grid md:grid-cols-2 gap-8">
         <div className="bg-gradient-to-br from-indigo-900/20 to-purple-900/20 border border-indigo-500/30 rounded-xl p-8">
-          <h3 className="text-2xl font-bold text-[#00ffcc] mb-6">Languages</h3>
+          <h3 className="text-2xl font-bold text-primary mb-6">Languages</h3>
           <div className="flex flex-wrap gap-3">
             {skills.languages.map((skill, i) => (
               <span 
@@ -28,7 +28,7 @@ export default function Skills({ skills }: SkillsProps) {
         </div>
 
         <div className="bg-gradient-to-br from-purple-900/20 to-pink-900/20 border border-purple-500/30 rounded-xl p-8">
-          <h3 className="text-2xl font-bold text-[#00ffcc] mb-6">Frameworks & Libraries</h3>
+          <h3 className="text-2xl font-bold text-primary mb-6">Frameworks & Libraries</h3>
           <div className="flex flex-wrap gap-3">
             {skills.frameworks.map((skill, i) => (
               <span 
@@ -42,7 +42,7 @@ export default function Skills({ skills }: SkillsProps) {
         </div>
 
         <div className="bg-gradient-to-br from-cyan-900/20 to-blue-900/20 border border-cyan-500/30 rounded-xl p-8">
-          <h3 className="text-2xl font-bold text-[#00ffcc] mb-6">Databases</h3>
+          <h3 className="text-2xl font-bold text-primary mb-6">Databases</h3>
           <div className="flex flex-wrap gap-3">
             {skills.databases.map((skill, i) => (
               <span 
@@ -56,7 +56,7 @@ export default function Skills({ skills }: SkillsProps) {
         </div>
 
         <div className="bg-gradient-to-br from-emerald-900/20 to-teal-900/20 border border-emerald-500/30 rounded-xl p-8">
-          <h3 className="text-2xl font-bold text-[#00ffcc] mb-6">Tools & Platforms</h3>
+          <h3 className="text-2xl font-bold text-primary mb-6">Tools & Platforms</h3>
           <div className="flex flex-wrap gap-3">
             {skills.tools.map((skill, i) => (
               <span 

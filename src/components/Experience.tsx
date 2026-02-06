@@ -21,7 +21,7 @@ export default function Experience({ experience }: ExperienceProps) {
           >
             <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
               <div>
-                <h3 className="text-2xl font-bold text-[#00ffcc] mb-2">{exp.role}</h3>
+                <h3 className="text-2xl font-bold text-primary mb-2">{exp.role}</h3>
                 <p className="text-xl text-gray-300">{exp.company}</p>
               </div>
               <span className="text-gray-400 mt-2 md:mt-0">{exp.period}</span>
@@ -29,7 +29,7 @@ export default function Experience({ experience }: ExperienceProps) {
             <ul className="space-y-3 mt-6">
               {exp.responsibilities.map((resp, j) => (
                 <li key={j} className="flex gap-3 text-gray-300">
-                  <span className="text-[#00ffcc] mt-1">▹</span>
+                  <span className="text-primary mt-1">▹</span>
                   <span>{resp}</span>
                 </li>
               ))}

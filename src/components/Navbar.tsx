@@ -41,7 +41,7 @@ export default function Navbar() {
         <a 
           href="#hero" 
           onClick={(e) => scrollToSection(e, '#hero')}
-          className="text-2xl font-bold bg-gradient-to-r from-[#00ffcc] to-[#6366f1] bg-clip-text text-transparent"
+          className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent"
         >
           &lt;SR /&gt;
         </a>
@@ -52,7 +52,7 @@ export default function Navbar() {
               key={item.name}
               href={item.href}
               onClick={(e) => scrollToSection(e, item.href)}
-              className="text-gray-300 hover:text-[#00ffcc] transition-colors text-sm font-medium tracking-wide"
+              className="text-gray-300 hover:text-primary transition-colors text-sm font-medium tracking-wide"
             >
               {item.name}
             </a>

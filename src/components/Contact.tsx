@@ -101,7 +101,7 @@ export default function Contact() {
 
   return (
     <section id="contact" className="py-20 px-6 max-w-4xl mx-auto">
-      <h2 className="text-4xl font-bold mb-12 text-center text-[#00ffcc] tracking-wider">
+      <h2 className="text-4xl font-bold mb-12 text-center text-primary tracking-wider">
         Get In Touch
       </h2>
       
@@ -115,10 +115,10 @@ export default function Contact() {
                 name="user_name"
                 required
                 onBlur={(e) => validateName(e.target.value)}
-                className={`bg-gray-800/50 border ${nameError ? 'border-red-500' : 'border-gray-700'} rounded-lg p-3 text-white focus:outline-none focus:border-[#00ffcc] focus:ring-1 focus:ring-[#00ffcc] transition-colors`}
+                className={`bg-gray-800/50 border ${nameError ? 'border-error' : 'border-gray-700'} rounded-lg p-3 text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors`}
                 placeholder="What's your name?"
               />
-              {nameError && <span className="text-red-400 text-sm">{nameError}</span>}
+              {nameError && <span className="text-error text-sm">{nameError}</span>}
             </div>
             <div className="flex-1 flex flex-col gap-2">
               <label htmlFor="user_email" className="text-gray-300 font-medium">Email</label>
@@ -127,17 +127,17 @@ export default function Contact() {
                 name="user_email"
                 required
                 onBlur={(e) => validateEmail(e.target.value)}
-                className={`bg-gray-800/50 border ${emailError ? 'border-red-500' : 'border-gray-700'} rounded-lg p-3 text-white focus:outline-none focus:border-[#00ffcc] focus:ring-1 focus:ring-[#00ffcc] transition-colors`}
+                className={`bg-gray-800/50 border ${emailError ? 'border-error' : 'border-gray-700'} rounded-lg p-3 text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors`}
                 placeholder="What's your email?"
               />
-              {emailError && <span className="text-red-400 text-sm">{emailError}</span>}
+              {emailError && <span className="text-error text-sm">{emailError}</span>}
             </div>
           </div>
           
           <div className="flex flex-col gap-2">
             <div className="flex justify-between items-center">
               <label htmlFor="subject" className="text-gray-300 font-medium">Subject</label>
-              <span className={`text-sm ${subjectWordCount > 20 ? 'text-red-400' : 'text-gray-400'}`}>
+              <span className={`text-sm ${subjectWordCount > 20 ? 'text-error' : 'text-gray-400'}`}>
                 {subjectWordCount}/20
               </span>
             </div>
@@ -146,18 +146,18 @@ export default function Contact() {
               name="subject"
               required
               onChange={handleSubjectChange}
-              className={`bg-gray-800/50 border ${subjectWordCount > 20 ? 'border-red-500' : 'border-gray-700'} rounded-lg p-3 text-white focus:outline-none focus:border-[#00ffcc] focus:ring-1 focus:ring-[#00ffcc] transition-colors`}
+              className={`bg-gray-800/50 border ${subjectWordCount > 20 ? 'border-error' : 'border-gray-700'} rounded-lg p-3 text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors`}
               placeholder="What's this about?"
             />
             {subjectWordCount > 20 && (
-              <span className="text-red-400 text-sm">Subject exceeds 20 words limit</span>
+              <span className="text-error text-sm">Subject exceeds 20 words limit</span>
             )}
           </div>
 
           <div className="flex flex-col gap-2">
             <div className="flex justify-between items-center">
               <label htmlFor="message" className="text-gray-300 font-medium">Message</label>
-              <span className={`text-sm ${wordCount > 500 ? 'text-red-400' : 'text-gray-400'}`}>
+              <span className={`text-sm ${wordCount > 500 ? 'text-error' : 'text-gray-400'}`}>
                 {wordCount}/500
               </span>
             </div>
@@ -166,30 +166,30 @@ export default function Contact() {
               required
               rows={5}
               onChange={handleMessageChange}
-              className={`bg-gray-800/50 border ${wordCount > 500 ? 'border-red-500' : 'border-gray-700'} rounded-lg p-3 text-white focus:outline-none focus:border-[#00ffcc] focus:ring-1 focus:ring-[#00ffcc] transition-colors resize-none`}
+              className={`bg-gray-800/50 border ${wordCount > 500 ? 'border-error' : 'border-gray-700'} rounded-lg p-3 text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors resize-none`}
               placeholder="Write your message here..."
             />
             {wordCount > 500 && (
-              <span className="text-red-400 text-sm">Message exceeds 500 words limit</span>
+              <span className="text-error text-sm">Message exceeds 500 words limit</span>
             )}
           </div>
 
           <button
             type="submit"
             disabled={loading || !!nameError || !!emailError || subjectWordCount > 20 || wordCount > 500}
-            className="mt-4 py-3 px-8 bg-[#00ffcc] text-black font-bold rounded-lg hover:bg-[#00ccaa] transition-all transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed w-full md:w-auto md:self-end shadow-[0_0_15px_rgba(0,255,204,0.3)]"
+            className="mt-4 py-3 px-8 bg-primary text-black font-bold rounded-lg hover:bg-primary-dark transition-all transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed w-full md:w-auto md:self-end shadow-[0_0_15px_rgba(0,255,204,0.3)]"
           >
             {loading ? 'Sending...' : 'Send Email'}
           </button>
 
           {success && (
-            <div className="p-4 bg-green-500/10 border border-green-500/50 text-green-400 rounded-lg text-center animate-fade-in">
+            <div className="p-4 bg-success/10 border border-success/50 text-success rounded-lg text-center animate-fade-in">
               Thank you! Your message has been sent successfully.
             </div>
           )}
           
           {error && (
-            <div className="p-4 bg-red-500/10 border border-red-500/50 text-red-400 rounded-lg text-center animate-fade-in">
+            <div className="p-4 bg-error/10 border border-error/50 text-error rounded-lg text-center animate-fade-in">
               Something went wrong. Please try again later.
             </div>
           )}

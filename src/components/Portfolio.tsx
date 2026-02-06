@@ -49,8 +49,8 @@ export default function Portfolio() {
 
   if (loading) {
     return (
-      <div className="bg-[#0a0a0f] h-screen flex items-center justify-center text-[#00ffcc]">
-        <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-[#00ffcc]"></div>
+      <div className="bg-[#0a0a0f] h-screen flex items-center justify-center text-primary">
+        <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-primary"></div>
       </div>
     )
   }

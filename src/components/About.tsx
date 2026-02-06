@@ -29,18 +29,18 @@ export default function About({ cvData }: AboutProps) {
           </div>
         </div>
         <div className="space-y-4">
-          <h3 className="text-2xl font-bold text-[#00ffcc] mb-6">Contact</h3>
+          <h3 className="text-2xl font-bold text-primary mb-6">Contact</h3>
           <div className="space-y-3">
             <a 
               href={`mailto:${cvData.contact.email}`}
-              className="flex items-center gap-3 text-gray-300 hover:text-[#00ffcc] transition-colors"
+              className="flex items-center gap-3 text-gray-300 hover:text-primary transition-colors"
             >
               <span className="text-xl">📧</span>
               {cvData.contact.email}
             </a>
             <a 
               href={`tel:${cvData.contact.phone}`}
-              className="flex items-center gap-3 text-gray-300 hover:text-[#00ffcc] transition-colors"
+              className="flex items-center gap-3 text-gray-300 hover:text-primary transition-colors"
             >
               <span className="text-xl">📱</span>
               {cvData.contact.phone}
@@ -49,7 +49,7 @@ export default function About({ cvData }: AboutProps) {
               href={`https://${cvData.contact.linkedin}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-3 text-gray-300 hover:text-[#00ffcc] transition-colors"
+              className="flex items-center gap-3 text-gray-300 hover:text-primary transition-colors"
             >
               <span className="text-xl">💼</span>
               LinkedIn
